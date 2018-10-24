@@ -1,0 +1,27 @@
+<mat-card  >
+  <!-- <h1 class="mat-display-1">Angular 6 AI</h1> -->
+  <h1>
+      HomePage
+    </h1>
+  <mat-card-content *ngFor="let message of allMessages | async">
+    <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot', 'to':   message.sentBy === 'user' }">
+      {{ message.content }}
+    </div>
+  </mat-card-content>
+
+  <div class="message-container">
+      <mat-card-actions class="voice-button">
+        <button mat-icon-button (click)="startTalkingToBot()">
+          <mat-icon matPrefix>keyboard_voice</mat-icon>
+        </button>
+      </mat-card-actions>&nbsp;
+      <mat-form-field>
+        <input matInput [(ngModel)]="formInput" min="2" placeholder="Your Message..." (keyup.enter)="sendMessageToBot()" type="text">
+      </mat-form-field>
+    </div>
+
+  <mat-card-actions class="button center">
+    <button mat-raised-button (click)="sendMessageToBot()">Send</button>
+  </mat-card-actions>
+
+</mat-card>
